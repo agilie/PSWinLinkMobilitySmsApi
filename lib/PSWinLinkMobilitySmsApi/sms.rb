@@ -55,7 +55,7 @@ module PSWinLinkMobilitySmsApi
       @response = response
       @response_hash = {}
       unless @response.nil?
-        data = @response.body.split
+        data = @response.body.to_s.split
         @response_hash['error_code'] = data[0]
         @response_hash['status'] = data[1]
         @response_hash['content'] = @response.body
