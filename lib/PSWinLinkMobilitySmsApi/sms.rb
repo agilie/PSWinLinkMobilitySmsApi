@@ -9,7 +9,7 @@ module PSWinLinkMobilitySmsApi
 
     def initialize(params = {})
       @to = params[:to]
-      @message = params[:message]
+      @message = params[:message].to_s.encode('ISO-8859-1')
       @msgid = params[:msgid]
       @from = params[:from]
       @response = nil
