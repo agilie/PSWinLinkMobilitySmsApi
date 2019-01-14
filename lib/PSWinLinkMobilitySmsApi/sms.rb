@@ -7,13 +7,13 @@ module PSWinLinkMobilitySmsApi
 
     attr_reader :status, :response_hash
 
-    def initialize(params={})
+    def initialize(params = {})
       @to = params[:to]
       @message = params[:message]
       @msgid = params[:msgid]
       @from = params[:from]
       @response = nil
-      @response_hash= {}
+      @response_hash = {}
       @status = nil
       @delivered = false
     end
@@ -55,11 +55,10 @@ module PSWinLinkMobilitySmsApi
       @response = response
       @response_hash = {}
       unless @response.nil?
-
-        data =  @response.split
+        data = @response.body.split
         @response_hash['error_code'] = data[0]
         @response_hash['status'] = data[1]
-        @response_hash['content'] = @response
+        @response_hash['content'] = @response.body
 
         @status = @response_hash['status']
         @delivered = @status == 'OK'
